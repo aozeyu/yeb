@@ -37,7 +37,16 @@
     </resultMap>
     <!--   结果印社 -->
     <resultMap id="MenusWithChildren" type="Menu" extends="BaseResultMap">
-
+        <id column="id1" property="id"></id>
+        <result column="name1" property="name"></result>
+        <collection property="children" ofType="com.xxxx.server.pojo.Menu">
+            <id column="id2" property="id"></id>
+            <result column="name2" property="name"></result>
+            <collection property="children" ofType="com.xxxx.server.pojo.Menu">
+                <id column="id3" property="id"></id>
+                <result column="name3" property="name"></result>
+            </collection>
+        </collection>
     </resultMap>
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
