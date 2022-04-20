@@ -3,6 +3,7 @@ package com.xxxx.server.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xxxx.server.mapper.DepartmentMapper;
 import com.xxxx.server.pojo.Department;
+import com.xxxx.server.pojo.RespBean;
 import com.xxxx.server.service.IDepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,5 +26,10 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Departm
     @Override
     public List<Department> getAllDepartment() {
         return departmentMapper.getAllDepartment(-1);
+    }
+
+    @Override
+    public RespBean addDep(Department dep) {
+        return null;
     }
 }
