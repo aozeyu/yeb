@@ -3,8 +3,6 @@ server:
   port: 63333
 
 spring:
-  main:
-    allow-circular-references: true
   # 数据源配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver

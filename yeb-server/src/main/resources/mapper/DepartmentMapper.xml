@@ -11,22 +11,47 @@
         <result column="enabled" property="enabled"/>
         <result column="isParent" property="isParent"/>
     </resultMap>
-    <resultMap id="DepartmentWithChildren" type="Department" extends="BaseResultMap">
-        <collection property="children" ofType="com.xxxx.server.pojo.Department"
-                    select="com.xxxx.server.mapper.DepartmentMapper.getAllDepartment" column="id">
 
+    <resultMap id="DepartmentWithChildren" type="com.xxxx.server.pojo.Department" extends="BaseResultMap">
+        <collection property="children" ofType="com.xxxx.server.pojo.Department"
+                    column="id" select="com.xxxx.server.mapper.DepartmentMapper.getAllDepartment">
         </collection>
     </resultMap>
+    <select id="deleteDep" statementType="CALLABLE">
+        call deleteDep(#{id,mode=IN,jdbcType=INTEGER},#{result,mode=OUT,jdbcType=INTEGER})
+    </select>
+    <select id="addDep" statementType="CALLABLE">
+        call addDep(#{name,mode=IN,jdbcType=VARCHAR},#{parentId,mode=IN,jdbcType=INTEGER},#{enabled,mode=IN,jdbcType=BOOLEAN},#{result,mode=OUT,jdbcType=INTEGER},#{id,mode=OUT,jdbcType=INTEGER})
+    </select>
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id
         , name, parentId, depPath, enabled, isParent
     </sql>
-    <select id="getAllDepartment" resultMap="DepartmentWithChildren">
+
+    <select id="getAllDepartment" parameterType="int" resultMap="DepartmentWithChildren">
         select
         <include refid="Base_Column_List"/>
         from t_department
-        where parentId = #{parentId}
-
+        where parentId=#{parentId}
     </select>
+
+
+    <select id="selectById" parameterType="integer" resultType="com.xxxx.server.pojo.Department">
+        select *
+        from t_department
+        where id = #{id}
+    </select>
+    <select id="selectByName" parameterType="string" resultType="com.xxxx.server.pojo.Department">
+        select *
+        from t_department
+        where name = #{name}
+    </select>
+    <select id="selectByParentId" parameterType="integer" resultType="com.xxxx.server.pojo.Department">
+        select *
+        from t_department
+        where parentId = #{parentId}
+    </select>
+
+
 </mapper>
