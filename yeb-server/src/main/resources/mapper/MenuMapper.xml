@@ -35,6 +35,10 @@
             <result column="rnameZh" property="nameZh"></result>
         </collection>
     </resultMap>
+    <!--   结果印社 -->
+    <resultMap id="MenusWithChildren" type="Menu" extends="BaseResultMap">
+
+    </resultMap>
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id
@@ -71,5 +75,14 @@
         WHERE m.id = mr.mid
           AND r.id = mr.rid
         ORDER BY m.id
+    </select>
+    <select id="getAllMenus" resultMap="MenusWithChildren">
+        select m1.id AS id1, m1.`name` as name1, m2.id AS id2, m2.`name` as name2, m3.id AS id3, m3.`name` as name3
+        from t_menu m1,
+             t_menu m2,
+             t_menu m3
+        where m1.id = m2.parentId
+          and m2.id = m3.parentId
+          and m3.enabled = true
     </select>
 </mapper>

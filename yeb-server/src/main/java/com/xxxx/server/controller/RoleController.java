@@ -4,6 +4,7 @@ package com.xxxx.server.controller;
 import com.xxxx.server.pojo.Menu;
 import com.xxxx.server.pojo.RespBean;
 import com.xxxx.server.pojo.Role;
+import com.xxxx.server.service.IMenuService;
 import com.xxxx.server.service.IRoleService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,8 @@ import java.util.List;
 public class RoleController {
     @Autowired
     private IRoleService roleService;
-
+    @Autowired
+    private IMenuService menuService;
     @ApiOperation(value = "获取所有角色")
     @GetMapping("/")
     public List<Role> getRoleList() {
@@ -58,6 +60,6 @@ public class RoleController {
     @ApiOperation(value = "查询所有菜单")
     @GetMapping("/menus")
     public List<Menu> getAllMenus () {
-
+        return menuService.getAllMenus();
     }
 }
