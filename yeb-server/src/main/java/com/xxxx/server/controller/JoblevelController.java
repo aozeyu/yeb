@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -52,11 +54,21 @@ public class JoblevelController {
     }
 
     @ApiOperation(value = "删除职位")
-    @PutMapping("/{id}")
+    @DeleteMapping("/{id}")
     public RespBean deleteJobLevel(@PathVariable Integer id) {
 
         if (joblevelService.removeById(id)) {
             return RespBean.success("删除成功 !");
+        }
+        return RespBean.error("删除失败 !");
+    }
+
+    @ApiOperation(value = "批量删除")
+    @DeleteMapping("/")
+    public RespBean deleteJobLevelByIds(Integer[] ids) {
+
+        if (joblevelService.removeByIds(Arrays.asList(ids))) {
+            return RespBean.success("批量删除成功!");
         }
         return RespBean.error("删除失败 !");
     }
