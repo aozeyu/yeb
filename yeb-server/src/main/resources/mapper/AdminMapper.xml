@@ -34,7 +34,7 @@
                  LEFT JOIN t_role r ON r.id = ar.rid
         where a.id != #{id}
         <if test="null != keywords and ''!=keywords">
-            and a.`name` Like CONCAT ('%',#{keywords}, '%');
+            and a.`name` Like CONCAT ('%',#{keywords}, '%')
         </if>
         ORDER BY a.id
     </select>
