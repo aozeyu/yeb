@@ -2,12 +2,11 @@ package com.xxxx.server.controller;
 
 
 import com.xxxx.server.pojo.Admin;
+import com.xxxx.server.pojo.RespBean;
 import com.xxxx.server.service.IAdminService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,5 +27,13 @@ public class AdminController {
     @GetMapping("/")
     public List<Admin> getAllAdmins(String keywords) {
         return adminService.getAllAdmins(keywords);
+    }
+
+    @ApiOperation(value = "更新操作员")
+    @PutMapping("/")
+    public RespBean updateAdmin(@RequestBody Admin admin){
+        if (adminService.updateById(admin)) {
+
+        }
     }
 }
