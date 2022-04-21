@@ -10,8 +10,10 @@ import java.util.List;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.experimental.Accessors;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -49,6 +51,7 @@ public class Admin  implements  UserDetails {
     private String address;
 
     @ApiModelProperty(value = "是否启用")
+    @Getter(AccessLevel.NONE)
     private Boolean enabled;
 
     @ApiModelProperty(value = "用户名")
