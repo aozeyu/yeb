@@ -2,4 +2,4 @@
 云e办后台
 ###
 技术栈
-springboot + mybatis +rides
+springboot + mybatis +rides+rabbitmq
